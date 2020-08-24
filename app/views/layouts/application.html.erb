@@ -10,18 +10,22 @@
   </head>
 
   <body>
-    <header>
+    <header class="navbar navbar=fixed-top navbar-inverse">
       <div class="container">
         <nav class='nav navbar-nav navber-left'>
           <p>Bookers</p>
         </nav>
         <nav class='nav navbar-nav navber-right'>
-          <% if if user_signed_in? %>
-            <li><a class="glyphicon glyphicon-home home" href="/"></a></li>
-            <li><a class="glyphicon glyphicon-icon about" href="/home/about"></a></li>
-            <li><a class="glyphicon glyphicon-edit sign_up" href="/users/sign_up"></a></li>
-            <li><a class="glyphicon glyphicon-log-in sign_in" href="/users/sign_in"></a></li>
+          <% if user_signed_in? %>
+            <li><a class="glyphicon glyphicon-home home" href="/"> Home</a></li>
+            <li><a class="glyphicon glyphicon-icon about" href="/home/about"> About</a></li>
+            <li><a class="glyphicon glyphicon-edit sign_up" href="/users/sign_up"> sign up</a></li>
+            <li><a class="glyphicon glyphicon-log-in sign_in" href="/users/sign_in"> login</a></li>
           <% else %>
+            <li><a class="glyphicon glyphicon-home home" href="/"> Home</a></li>
+            <li><a class="glyphicon glyphicon-user users" href="/users/index"> Users</a></li>
+            <li><a class="glyphicon glyphicon-book books" href="/books/index"> Books</a></li>
+            <li><%= link_to " logout", destroy_user_session_path, method: :delete, class:"glyphicon glyphicon-log-out logout" %></li>
           <% end %>
         </nav>
       </div>
