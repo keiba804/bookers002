@@ -1,0 +1,34 @@
+<div class="container">
+	<%= render 'users/user', user: @user, book: @newbook %>
+	<div class="col-xs-9">
+		<h2>Book detail</h2>
+		<table class="table table-hover table-inverse">
+			<tbody>
+				<tr>
+					<th>
+						<%= link_to user_path(@book.user_id) do %>
+	                    	<%= attachment_image_tag @book.user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %><br>
+	                    	<%= @user.name %>
+                		<% end %>
+					</th>
+					<th>
+						<%= @book.title %>
+					</th>
+					<th>
+						<%= @book.body %>
+					</th>
+					<th>
+						<% if @book.user == current_user %>
+	  						<p><%= link_to"Edit", edit_book_path(@book.id) %></p>
+	  					<% end %>
+					</th>
+					<th>
+						<% if @book.user == current_user %>
+	  						<p><%= link_to"Destroy", book_path(@book.id), method: :delete %></p>
+	  					<% end %>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
