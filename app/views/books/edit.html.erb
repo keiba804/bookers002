@@ -1,10 +1,14 @@
 <div class="container">
-	<h2>Editing book</h2>
-	<%= form_for(@book) do |f| %>
-		<%= f.label :Title %>
-		<%= f.text_field :title %>
-		<%= f.label :Opinion %>
-		<%= f.text_field :body %>
-		<button type="submit" class="btn btn-primary">Update Book</button>
-	<% end %>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<h2>Editing book</h2>
+			<%= form_for(@book) do |f| %>
+				<%= f.label :Title %>
+				<%= f.text_field :title %>
+				<%= f.label :Opinion %>
+				<%= f.text_field :body %>
+				<button type="submit" class="btn btn-primary">Update Book</button>
+			<% end %>
+		</div>
+	</div>
 </div>

@@ -14,17 +14,17 @@
 			</tr>
 		</tbody>
 	</table>
-	<% if @user == current_user %>
+	<% if user == current_user %>
 		<div class="row">
 			<%= link_to "", edit_user_registration_path(current_user), class:"btn btn-default glyphicon glyphicon-wrench" %>
 		</div>
-		<h2>New book</h2>
-		<%= form_for(@book) do |f| %>
-			<label>Title</label><br>
-			<%= f.text_field :title %><br>
-			<label>Opinion</label><br>
-			<%= f.text_field :body %><br>
-			<button type="submit" class="btn btn-primary">Create Book</button>
-		<% end %>
+	<% end %>
+	<h2>New book</h2>
+	<%= form_for(book) do |f| %>
+		<label>Title</label><br>
+		<%= f.text_field :title %><br>
+		<label>Opinion</label><br>
+		<%= f.text_field :body %><br>
+		<button type="submit" class="btn btn-primary">Create Book</button>
 	<% end %>
 </div>
