@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 	def about
 	end
 
+
 	def index
 		@books = Book.all
 		@user = current_user
@@ -22,10 +23,13 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		@book = Book.find(book_params)
+		@book = Book.new(book_params)
+		@book.user = current_user
 	    if @book.create(book_params)
 	    	redirect_to book_path(@book.id), notice: 'Book was successfully updated.'
 	    else
+	    	@user = current_user
+			@books = Book.all
 	    	render 'edit'
 	    end
 	end
