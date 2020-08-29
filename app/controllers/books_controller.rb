@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+	before_action :authenticate_user!, except:[:top, :about]
 	def top
 	end
 
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
 	def create
 		@book = Book.new(book_params)
 		@book.user = current_user
-	    if @book.create(book_params)
+	    if @book.save(book_params)
 	    	redirect_to book_path(@book.id), notice: 'Book was successfully updated.'
 	    else
 	    	@user = current_user
