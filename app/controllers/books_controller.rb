@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!, except:[:top, :about]
+	before_action :ensure_correct_user,{only:[:edit, :update,:destroy]}
 	def top
 	end
 
@@ -31,7 +32,7 @@ class BooksController < ApplicationController
 	    else
 	    	@user = current_user
 			@books = Book.all
-	    	render 'edit'
+	    	render 'index'
 	    end
 	end
 
@@ -48,6 +49,13 @@ class BooksController < ApplicationController
 	    else
 	    	render 'edit'
 	    end
+	end
+
+	def ensure_correct_user
+	  @book = Book.find(params[:id])
+	  if @book.user_id != current_user.id
+	  redirect_to books_path
+	  end
 	end
 
 	private
