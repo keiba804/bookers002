@@ -1,7 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
-			<h2>Editing book</h2>
+			<h2>Editing Book</h2>
+			<% if @book.errors.any? %>
+		    	<div class="alert">
+				    <ul>
+				      <%= @book.errors.count %>errors prohibited this obj from being saved:<br>
+				      <% @book.errors.full_messages.each do |message| %>
+				        <li><%= message %></li>
+				      <% end %>
+				    </ul>
+		  		</div>
+			<% end %>
 			<%= form_for(@book) do |f| %>
 				<%= f.label :Title %>
 				<%= f.text_field :title %>
@@ -9,6 +19,7 @@
 				<%= f.text_field :body %>
 				<button type="submit" class="btn btn-primary">Update Book</button>
 			<% end %>
+			<p><%= link_to "Show", book_path(@book.id) %> | <%= link_to "Back", books_path %></p>
 		</div>
 	</div>
 </div>
